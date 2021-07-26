@@ -63,6 +63,16 @@ chmod +x scripts/symlink.sh
 6. Maya should now be up and running! If you want to repeat a certain part of the installation
    process, you can execute the corresponding script located in "scripts".
 
+## Uninstalling Maya
+
+1. Execute the uninstall script
+
+```
+./uninstall.sh
+```
+
+The uninstaller will remove the installed packages (except for dependencies) from pacman and will delete all the directories used by Maya (at least the ones I know).
+
 ## Known issues
 
 * Maya will crash when trying to activate the sowftare with a serial key.
