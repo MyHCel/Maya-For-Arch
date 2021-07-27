@@ -46,15 +46,7 @@ mv /path/to/Autodesk_Maya_2020_ML_Linux_64bit.tgz /path/to/Maya-For-Arch/2020/
 ```bash
 chmod +x install.sh
 chmod +x uninstall.sh
-chmod +x scripts/adsk_licensing.sh
-chmod +x scripts/convert.sh
-chmod +x scripts/extract.sh
-chmod +x scripts/fix.sh
-chmod +x scripts/install_dep.sh
-chmod +x scripts/install_pkg.sh
-chmod +x scripts/licensing.sh
-chmod +x scripts/mtoa.sh
-chmod +x scripts/symlink.sh
+chmod +x -R scripts
 ```
 
 5. Before finishing the installation process, Maya will launch. You will have to login to be able
@@ -79,6 +71,10 @@ The uninstaller will remove the installed packages (except for dependencies) fro
 
 * Some features such as colour managment and viewport 2.0 won't be available on graphics cards that
    don't support OpenGL 4 (Intel graphics).
+
+## Notes
+
+* You can delete the "Maya-For-Arch" folder once the installation is done.
 
 ## I think that's all
 
