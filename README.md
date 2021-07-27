@@ -34,8 +34,8 @@ mv /path/to/Autodesk_Maya_2020_ML_Linux_64bit.tgz /path/to/Maya-For-Arch/2020/
 
 4. Execute the installer script (don't do it as root). It will ask for your password a few times.
 
-   Note: This will update your system and install all required dependecies without asking for
-   confirmation. If you don't want that to happen, modify "scripts/install_dep.sh"
+   Note: This will update your system and install all required dependecies. If you don't want that
+   to happen, modify "scripts/install_dep.sh"
 
 ```bash
 ./install.sh
