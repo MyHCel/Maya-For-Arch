@@ -6,7 +6,7 @@ yay -Syu libjpeg lib32-libjpeg libjpeg6 audiofile xorg-fonts-misc libxp python2 
 
 # Install utilities
 
-yay -S noconfirm alien_package_converter debtap
+yay -S alien_package_converter debtap
 
 # Update debtap
 
