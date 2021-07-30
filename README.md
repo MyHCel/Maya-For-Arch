@@ -6,7 +6,26 @@ Maya For Arch is a simple script that helps you install Autodesk Maya on Arch Li
 
 Currently, the only supported version is Maya 2020.
 
-## Dpependencies
+## Important update
+
+All errors caused by OpenSSL are now gone! This means that Maya will now work properly, also, RenderMan for Maya is now working.  C:
+
+If you installed Maya before by using this script or following [this guide](https://www.reddit.com/r/ManjaroLinux/comments/k3jz5a/how_to_install_maya_2020_renderman_23_on_manjaro/) or [this guide](https://medium.com/@llama_9851/installing-maya2020-on-arch-linux-e257ffadd52c), you may want to remove the following symlinks and execute the following script instead of reinstalling the whole thing.
+
+```bash
+rm /usr/lib/libssl.so.10
+```
+```bash
+rm /usr/lib/libcrypto.so.10
+```
+```bash
+./scripts/libs.sh
+```
+
+Huge thanks to [u/r_burgess](https://www.reddit.com/user/j_burgess/) for helping me diagnose the problem with
+OpenSSL.
+
+## Dependencies
 
 These are the dependencies needed by the script. All dependencies needed by Maya are installed by the script.
 
@@ -29,7 +48,7 @@ git clone https://github.com/MyHCel/Maya-For-Arch.git
 3. Put the "tgz" file inside its correspondig version folder (you can also use you file manager).
 
 ```bash
-mv /path/to/Autodesk_Maya_2020_ML_Linux_64bit.tgz /path/to/Maya-For-Arch/2020/
+mv /path/to/Autodesk_Maya_for_Linux.tgz /path/to/Maya-For-Arch/2020/
 ```
 
 4. Execute the installer script (don't do it as root). It will ask for your password a few times.
@@ -45,7 +64,11 @@ mv /path/to/Autodesk_Maya_2020_ML_Linux_64bit.tgz /path/to/Maya-For-Arch/2020/
 
 ```bash
 chmod +x install.sh
+```
+```bash
 chmod +x uninstall.sh
+```
+```bash
 chmod +x -R scripts
 ```
 

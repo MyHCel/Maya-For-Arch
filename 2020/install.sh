@@ -16,9 +16,9 @@
 
 ./scripts/install_pkg.sh
 
-#Make SSL and libGL symlinks
+# Copy and symlink libraries
 
-./scripts/symlink.sh
+./scripts/libs.sh
 
 # adsklicensing
 
