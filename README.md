@@ -48,7 +48,7 @@ mv /path/to/Autodesk_Maya_for_Linux.tgz /path/to/Maya-For-Arch/
  [2] Maya 2022
 ```
 
-5. 1. If the script does not execute, chmod all ".sh" files
+5.1. If the script does not execute, chmod all ".sh" files
 
 ```bash
 chmod +x install.sh
