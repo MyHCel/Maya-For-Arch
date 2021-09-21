@@ -19,9 +19,8 @@ case $MAYA_VERSION in
       ./scripts/common/adsk_licensing.sh
       ./scripts/2020/licensing.sh
       ./scripts/2020/mtoa.sh
-      sudo -u $NONROOT maya
-      sudo -u $NONROOT ./scripts/2020/fix.sh
       ./scripts/2020/clear.sh
+      sudo -u $NONROOT ./scripts/2020/fix.sh
       ;;
 
    2 | 2022)
@@ -34,17 +33,16 @@ case $MAYA_VERSION in
       ./scripts/common/adsk_licensing.sh
       ./scripts/2022/licensing.sh
       ./scripts/2022/mtoa.sh
-      sudo -u $NONROOT maya
-      sudo -u $NONROOT ./scripts/2022/fix.sh
       ./scripts/2022/clear.sh
+      sudo -u $NONROOT ./scripts/2022/fix.sh
       ;;
    *)
-      echo "Bruh\n"
+      echo "Bruh"
       ;;
 esac
 
 ./scripts/common/clear_pkg.sh
+echo "Done C:"
+sudo -u $NONROOT maya
 
 exit
-
-echo "Done C;"

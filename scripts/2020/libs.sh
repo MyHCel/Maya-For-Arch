@@ -10,3 +10,7 @@ cp lib/libssl.so.10 /usr/autodesk/maya2020/lib/
 # ====== Link libGL to Maya's lib folder ======
 
 ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2020/lib/libGL.so
+
+# ====== Create libmd.so into lib folder ======
+
+touch /usr/autodesk/maya2020/lib/libmd.so
