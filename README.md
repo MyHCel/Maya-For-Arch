@@ -112,13 +112,19 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 ## Known issues
 
 * Some features such as colour managment and viewport 2.0 won't be available on
-  graphics cards that don't support OpenGL.
+  graphics cards that don't support OpenGL 4.
 
 * Maya will crash when trying to activate the sowftare with a serial key.
 
 * Pymel for Maya 2022 fails to execute a Python script when installing.
 
-* The home screen of Maya 2022 does not show up. To be able to use Maya, just press ESC.
+* The home screen of Maya 2022 does not show up.
+  Workarround: restart Maya (only at first start), wait for it to load
+  and then press ESC.
+  Once in Maya, go to Preferences and uncheck "Show Home Screen on startup".
+
+* The mtoh.so plug-in will give and error saying that "hdArnold.so" could not
+  find "libai.so"
 
 * Maya 2022 crashes when running on Intel graphics.
   To temporarily fix it run:
@@ -126,6 +132,8 @@ Note: Depending on your processor, converting the rpm packages may take quite so
   ```bash
   maya -noAutoloadPlugins
   ```
+
+  Then Activate the plug-ins you need except for mtoa.so and xgenToolkit.so
 
 ## I think that's all
 
