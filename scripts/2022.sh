@@ -90,6 +90,9 @@ function installPkg2022()
 # Argument 1: Installer root dir
 function installLib2022()
 {
+    # Create Maya's lib folder
+    mkdir -p /usr/autodesk/maya2022/lib
+
     # Copy libraries to Maya's lib folder
     cp -r $1/lib/2022/* /usr/autodesk/maya2022/lib/
 

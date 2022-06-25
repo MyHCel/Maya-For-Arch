@@ -78,6 +78,9 @@ function installPkg2020()
 # Argument 1: Installer root dir
 function installLib2020()
 {
+    # Create Maya's lib folder
+    mkdir -p /usr/autodesk/maya2020/lib
+
     # Copy libraries to Maya's lib folder
     cp -r $1/lib/2020/* /usr/autodesk/maya2020/lib/
 

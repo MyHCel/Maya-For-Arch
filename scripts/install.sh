@@ -14,15 +14,15 @@ function installMaya()
     cd $3
     case $1 in
         2020)
-            installPkg2020
             installLib2020 $4
+            installPkg2020
             adskLic
             license2020
             ;;
 
         2022)
-            installPkg2022
             installLib2022 $4
+            installPkg2022
             adskLic
             license2022
             ;;
