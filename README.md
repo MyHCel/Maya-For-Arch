@@ -102,7 +102,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 * Fixed libtiff error in 2022.
 * Fixed libpng12 error in 2022 (only appears when crashing).
 
-* If you installed Maya 2022 with the old scrpit, copy the
+* If you installed Maya 2022 with the old script, copy the
   contents of Maya-For-Arch/lib/2022 to /usr/autodesk/maya2022/lib/
 
   ```bash
