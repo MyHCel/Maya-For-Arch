@@ -79,10 +79,9 @@ function installPkg2020()
 function installLib2020()
 {
     # Copy libraries to Maya's lib folder
-    cp $1/lib/2020/libcrypto.so.1.0.2o /usr/autodesk/maya2020/lib/
-    cp $1/lib/2020/libcrypto.so.10 /usr/autodesk/maya2020/lib/
-    cp $1/lib/2020/libssl.so.1.0.2o /usr/autodesk/maya2020/lib/
-    cp $1/lib/2020/libssl.so.10 /usr/autodesk/maya2020/lib/
+    cp -r $1/lib/2020/* /usr/autodesk/maya2020/lib/
+
+    # Link libraries to Maya's lib folder
     ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2020/lib/libGL.so
 
     # Create libmd.so into lib folder

@@ -91,12 +91,7 @@ function installPkg2022()
 function installLib2022()
 {
     # Copy libraries to Maya's lib folder
-    cp $1/lib/2022/libjbig.so.2.1 /usr/autodesk/maya2022/lib/
-    cp $1/lib/2022/libjbig85.so.2.1 /usr/autodesk/maya2022/lib/
-    cp $1/lib/2022/libtiff.so.5 /usr/autodesk/maya2022/lib/
-    cp $1/lib/2022/libtiff.so.5.8.0 /usr/autodesk/maya2022/lib/
-    cp $1/lib/2022/libtiffxx.so.5 /usr/autodesk/maya2022/lib/
-    cp $1/lib/2022/libtiffxx.so.5.8.0 /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/2022/* /usr/autodesk/maya2022/lib/
 
     # Link libraries to Maya's lib folder
     ln -s /usr/lib/libcrypto.so.1.1 /usr/autodesk/maya2022/lib/libcrypto.so.10
