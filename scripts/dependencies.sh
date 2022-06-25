@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
-source 2020.sh
-source 2022.sh
+source $PWD/scripts/2020.sh
+source $PWD/scripts/2022.sh
 
 # Install dependencies
 # Argument 1: version
@@ -15,6 +15,9 @@ function installDep()
 
         2022)
             installDep2022 $2
+            ;;
+        *)
+            echo "bruh"
             ;;
     esac
 }

@@ -127,6 +127,7 @@ function rmDebPkg2022()
     rm -r $(ls | grep substance | grep .deb)
 }
 
+# Uninstall packages
 function uninstall2022()
 {
     pacman -Rns --noconfirm $(pacman -Qm | grep adlmapps | awk '{print $1}')

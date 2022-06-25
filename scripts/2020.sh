@@ -75,13 +75,14 @@ function installPkg2020()
 
 # Install libraries from
 # the current directory
+# Argument 1: Installer root dir
 function installLib2020()
 {
     # Move libraries to Maya's lib folder
-    cp libcrypto.so.1.0.2o /usr/autodesk/maya2020/lib/
-    cp libcrypto.so.10 /usr/autodesk/maya2020/lib/
-    cp libssl.so.1.0.2o /usr/autodesk/maya2020/lib/
-    cp libssl.so.10 /usr/autodesk/maya2020/lib/
+    cp $1/lib/2020/libcrypto.so.1.0.2o /usr/autodesk/maya2020/lib/
+    cp $1/lib/2020/libcrypto.so.10 /usr/autodesk/maya2020/lib/
+    cp $1/lib/2020/libssl.so.1.0.2o /usr/autodesk/maya2020/lib/
+    cp $1/lib/2020/libssl.so.10 /usr/autodesk/maya2020/lib/
 
     # Link libGL to Maya's lib folder
     ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2020/lib/libGL.so
@@ -118,6 +119,7 @@ function rmDebPkg2020()
     rm -r $(ls | grep substance | grep .deb)
 }
 
+# Uninstall packages
 function uninstall2020()
 {
     pacman -Rns --noconfirm $(pacman -Qm | grep adlmapps | awk '{print $1}')

@@ -1,7 +1,39 @@
-#!/bin/bash
+#!/usr/bin/bash
 
-echo -e "HOME_DIR=$HOME" > env.sh
-chmod +x env.sh
+source $PWD/scripts/uninstall.sh
 
-sudo ./scripts/common/uninstall_all.sh
+echo "Select the version you want to uninstall"
+echo "[1] Maya 2020"
+echo "[2] Maya 2022"
+echo -n "version: "
+read VERSION
 
+echo -e "\n"
+echo -n "Enter your username: "
+read NONROOT
+
+HOME_DIR=/home/$NONROOT
+
+case $VERSION in
+    1 | 2020)
+        VERSION=2020
+        ;;
+
+    2 | 2022)
+        VERSION=2022
+        ;;
+esac
+
+systemctl stop adsklicensing
+systemctl disable adsklicensing
+uninstall $VERSION
+
+rm -r /usr/autodesk
+rm -r $HOME_DIR/maya
+rm -r $HOME_DIR/xgen
+rm -r $HOME_DIR/Adlm
+rm -r /var/opt/Autodesk
+rm -r /opt/Autodesk
+rm -r $HOME_DIR/.local/share/Autodesk
+rm -r $HOME_DIR/.autodesk
+rm -r $HOME_DIR/.config/Autodesk

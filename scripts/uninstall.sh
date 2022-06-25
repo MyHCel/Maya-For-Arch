@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-source 2020.sh
-source 2022.sh
+source $PWD/scripts/2020.sh
+source $PWD/scripts/2022.sh
 
-# Uninstall Maya
+# Uninstall packages
 # Argument 1: version
 function uninstall()
 {

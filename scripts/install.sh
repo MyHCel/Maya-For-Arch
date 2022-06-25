@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 
-source 2020.sh
-source 2022.sh
-source common.sh
+source $PWD/scripts/2020.sh
+source $PWD/scripts/2022.sh
+source $PWD/scripts/common.sh
 
 # Install Maya
 # Argument 1: version
