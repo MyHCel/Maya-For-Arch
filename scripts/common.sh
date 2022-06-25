@@ -12,9 +12,10 @@ function adskLic()
 # Install Arnold for Maya
 # from the current directory
 # Argument 1: version
+# Argument 2: Installer root dir
 function installMtoA()
 {
-    cd Maya/Packages
+    cd $2/Maya/Packages
     python2 ./unix_installer.py $1 linux silent
 }
 
@@ -22,7 +23,7 @@ function installMtoA()
 # Argument 1: Installer root dir
 function rmPkg()
 {
-    echo -e "\n Remove converted packages? [Y/N]"
+    echo -n "Remove converted packages? [Y/N]: "
     read INPUT
 
     cd $1
@@ -44,13 +45,10 @@ esac
 # Argument 2: user name
 function setEnv()
 {
-    sudo -u $2 mkdir /home/$2/maya
-    sudo -u $2 mkdir /home/$2/maya/$1
+    sudo -u $2 mkdir -p /home/$2/maya/$1
 
-    sudo -u $2 \
-    echo -e "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1\n
-    MAYA_CM_DISABLE_ERROR_POPUPS=1\n
-    MAYA_COLOR_MGT_NO_LOGGING=1\n
-    TMPDIR=/tmp" \
-    >> /home/$2/maya/$1/Maya.env
+    sudo -u $2 echo -e "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1\nMAYA_CM_DISABLE_ERROR_POPUPS=1\nMAYA_COLOR_MGT_NO_LOGGING=1\nTMPDIR=/tmp" \
+    > /home/$2/maya/$1/Maya.env
+
+    chown $2:$2 /home/$2/maya/$1/Maya.env
 }

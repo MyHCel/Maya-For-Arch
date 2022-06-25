@@ -16,7 +16,6 @@ echo "[2] Maya 2022"
 echo -n "version: "
 read VERSION
 
-echo -e "\n"
 echo -n "Enter your username: "
 read NONROOT
 
@@ -30,6 +29,7 @@ case $VERSION in
         ;;
 esac
 
+VERSION2=$VERSION
 installDep $VERSION $NONROOT
 
 # extract the compressed file
@@ -39,6 +39,6 @@ tar zxvf $(ls | grep Maya | grep .tgz) -C Maya
 sudo -u $NONROOT mkdir $PKG
 convertPkg $VERSION $PKG
 installMaya $VERSION $NONROOT $PKG $ROOT_DIR
-clean $VERSION $PKG $ROOT_DIR
+clean $VERSION2 $PKG $ROOT_DIR
 
 echo "Done C:"

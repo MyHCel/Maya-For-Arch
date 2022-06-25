@@ -4,7 +4,7 @@
 # Argument 1: username
 function installDep2020()
 {
-    sudo -u $1 yay -Syu libjpeg lib32-libjpeg \
+    sudo -u $1 yay -Syu --noconfirm --needed libjpeg lib32-libjpeg \
     libjpeg6 audiofile xorg-fonts-misc \
     libxp python2 python2-backports \
     ld-lsb lsb-release cpio \

@@ -15,7 +15,7 @@ function installMaya()
     case $1 in
         2020)
             installPkg2020
-            installLib2020
+            installLib2020 $4
             adskLic
             license2020
             ;;
@@ -29,7 +29,7 @@ function installMaya()
     esac
 
     cd $4
-    installMtoA $1
+    installMtoA $1 $4
     setEnv $1 $2
 }
 

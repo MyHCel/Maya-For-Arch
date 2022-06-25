@@ -4,7 +4,7 @@
 # Argument 1: username
 function installDep2022()
 {
-    sudo -u $1 yay -Syu openssl libjpeg \
+    sudo -u $1 yay -Syu --noconfirm --needed openssl libjpeg \
     lib32-libjpeg libjpeg6 audiofile \
     xorg-fonts-misc libxp python2 \
     python2-backports ld-lsb lsb-release \
