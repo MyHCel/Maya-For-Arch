@@ -22,7 +22,7 @@ function installMaya()
 
         2022)
             installPkg2022
-            installLib2022
+            installLib2022 $4
             adskLic
             license2022
             ;;

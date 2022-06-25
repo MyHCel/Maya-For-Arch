@@ -31,13 +31,9 @@ function rmPkg()
     case $INPUT in
 
     y | Y)
-       rm -r pkg
-       ;;
-
-    *)
-       echo " "
-       ;;
-esac
+        rm -r pkg
+        ;;
+    esac
 }
 
 # Set the env file
@@ -47,8 +43,40 @@ function setEnv()
 {
     sudo -u $2 mkdir -p /home/$2/maya/$1
 
-    sudo -u $2 echo -e "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1\nMAYA_CM_DISABLE_ERROR_POPUPS=1\nMAYA_COLOR_MGT_NO_LOGGING=1\nTMPDIR=/tmp" \
+    sudo -u $2 echo -e "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1\nMAYA_COLOR_MGT_NO_LOGGING=1\nTMPDIR=/tmp" \
     > /home/$2/maya/$1/Maya.env
 
     chown $2:$2 /home/$2/maya/$1/Maya.env
+}
+
+function rmLeftDirs()
+{
+    echo "Remove Autodesk directories?"
+    echo "(if you have more Autodesk software"
+    echo "installed, perhaps you should not)"
+    echo -n "[Y/N]: "
+    read INPUT
+
+    case $INPUT in
+
+    y | Y)
+        if [ $VERSION == 2022 ]; then
+            rm -r /opt/Autodesk
+        fi
+
+        rm -r /usr/autodesk
+        rm -r $HOME_DIR/.local/share/Autodesk
+        rm -r $HOME_DIR/.autodesk
+        rm -r $HOME_DIR/.config/Autodesk
+        ;;
+
+    n | N)
+        rm -r /usr/autodesk/maya$VERSION
+        rm -r /usr/autodesk/modules/maya
+        ;;
+    esac
+
+    rm -r $HOME_DIR/maya
+    rm -r $HOME_DIR/xgen
+    rm -r $HOME_DIR/Adlm
 }

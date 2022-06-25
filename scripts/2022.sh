@@ -11,7 +11,7 @@ function installDep2022()
     cpio xorg-fonts-100dpi xorg-fonts-75dpi \
     xorg-fonts gsfonts \
     adobe-source-code-pro-fonts xorg-xlsfonts \
-    xorg-fonts-type1 libtiff libpng15 \
+    xorg-fonts-type1 libpng15 \
     ncurses5-compat-libs \
     lib32-ncurses5-compat-libs libffi6 \
     alien_package_converter debtap
@@ -87,11 +87,21 @@ function installPkg2022()
 
 # Install libraries from
 # the current directory
+# Argument 1: Installer root dir
 function installLib2022()
 {
+    # Copy libraries to Maya's lib folder
+    cp $1/lib/2022/libjbig.so.2.1 /usr/autodesk/maya2022/lib/
+    cp $1/lib/2022/libjbig85.so.2.1 /usr/autodesk/maya2022/lib/
+    cp $1/lib/2022/libtiff.so.5 /usr/autodesk/maya2022/lib/
+    cp $1/lib/2022/libtiff.so.5.8.0 /usr/autodesk/maya2022/lib/
+    cp $1/lib/2022/libtiffxx.so.5 /usr/autodesk/maya2022/lib/
+    cp $1/lib/2022/libtiffxx.so.5.8.0 /usr/autodesk/maya2022/lib/
+
     # Link libraries to Maya's lib folder
     ln -s /usr/lib/libcrypto.so.1.1 /usr/autodesk/maya2022/lib/libcrypto.so.10
     ln -s /usr/lib/libssl.so.1.1 /usr/autodesk/maya2022/lib/libssl.so.10
+    ln -s /usr/lib/libcrypt.so.2.0.0 /usr/autodesk/maya2022/lib/libcrypt.so.1
     ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2022/lib/libGL.so
 
     # Create libmd.so into lib folder
