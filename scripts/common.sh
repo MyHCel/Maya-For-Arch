@@ -49,18 +49,23 @@ function setEnv()
     chown $2:$2 /home/$2/maya/$1/Maya.env
 }
 
+# Remove Autodesk directories
+# Argument 1: version
+# Argument 2: user name
 function rmLeftDirs()
 {
-    echo "Remove Autodesk directories?"
+    echo -e "\nRemove Autodesk directories?"
     echo "(if you have more Autodesk software"
     echo "installed, perhaps you should not)"
     echo -n "[Y/N]: "
     read INPUT
 
+    HOME_DIR=/home/$2
+
     case $INPUT in
 
     y | Y)
-        if [ $VERSION == 2022 ]; then
+        if [ $1 == 2022 ]; then
             rm -r /opt/Autodesk
         fi
 
@@ -71,7 +76,7 @@ function rmLeftDirs()
         ;;
 
     n | N)
-        rm -r /usr/autodesk/maya$VERSION
+        rm -r /usr/autodesk/maya$1
         rm -r /usr/autodesk/modules/maya
         ;;
     esac

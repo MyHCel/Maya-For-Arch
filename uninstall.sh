@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
 source $PWD/scripts/uninstall.sh
+source $PWD/scripts/common.sh
 
-echo "Select the version you want to uninstall"
+echo -e "\nSelect the version you want to uninstall"
 echo "[1] Maya 2020"
 echo "[2] Maya 2022"
 echo -n "version: "
@@ -26,18 +27,4 @@ esac
 systemctl stop adsklicensing
 systemctl disable adsklicensing
 uninstall $VERSION
-
-rm -r /usr/autodesk/maya$VERSION
-rm -r /usr/autodesk/modules/maya
-rm -r /var/opt/Autodesk
-
-if [ $VERSION == 2022 ]; then
-    rm -r /opt/Autodesk
-fi
-
-rm -r $HOME_DIR/maya
-rm -r $HOME_DIR/xgen
-rm -r $HOME_DIR/Adlm
-rm -r $HOME_DIR/.local/share/Autodesk
-rm -r $HOME_DIR/.autodesk
-rm -r $HOME_DIR/.config/Autodesk
+rmLeftDirs $VERSION $NONROOT
