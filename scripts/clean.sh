@@ -8,6 +8,7 @@ source $PWD/scripts/common.sh
 # Remove Maya deb files
 # Argument 1: version
 # Argument 2: pkg dir
+# Argument 3: Installer root dir
 function cleanMaya()
 {
     cd $2
@@ -21,13 +22,17 @@ function cleanMaya()
             ;;
     esac
 
+    cd $3
     rm -r Maya
 }
 
 # Remove Adsk deb files
 # Argument 1: pkg dir
+# Argument 2: Installer root dir
 function cleanAdsk()
 {
     cd $1
     rmDebPkgAdsk
+    cd $2
+    rm -r adsklicensinginstaller
 }

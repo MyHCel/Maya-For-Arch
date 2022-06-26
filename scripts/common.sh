@@ -1,15 +1,16 @@
 #!/usr/bin/bash
 
 # Register Maya
+# Argument 1: version
 function registerMaya()
 {
-    VERSION=$(ls /opt/Autodesk/AdskLicensing)
+    VERSION=Current
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper \
     register -pk 657L1 -pv 2020.0.0.F -el EN_US -cf \
-    /var/opt/Autodesk/Adlm/<mayaversion>/MayaConfig.pit
+    /var/opt/Autodesk/Adlm/Maya$1/MayaConfig.pit
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
 }
@@ -33,7 +34,7 @@ function rmPkg()
 
     cd $2
 
-    if [[ $INPUT == y ]] || [[ $INPUT == Y ]]; then
+    if [[ $INPUT == y || $INPUT == Y ]]; then
         rm -r $1
     fi
 }
@@ -50,7 +51,7 @@ function setEnv()
     echo "MAYA_DISABLE_CIP=1" >> /home/$2/maya/$1/Maya.env
     echo "TMPDIR=/tmp" >> /home/$2/maya/$1/Maya.env
 
-    if [ $1 >= 2022 ]; then
+    if [[ $1 > 2020 ]]; then
         echo "MAYA_NO_HOME=1" >> /home/$2/maya/$1/Maya.env
     fi
 
@@ -93,7 +94,7 @@ function rmAutodeskDirs()
 
     HOME_DIR=/home/$1
 
-    if [[ $INPUT == y ]] || [[ $INPUT == Y ]]; then
+    if [[ $INPUT == y || $INPUT == Y ]]; then
         rm -r /usr/autodesk
         rm -r /opt/Autodesk
         rm -r /var/opt/Autodesk

@@ -66,9 +66,9 @@ function installLib2020()
     mkdir -p /usr/autodesk/maya2020/lib
 
     # Copy libraries to Maya's lib folder
-    cp -r $1/lib/libtiff/4.4.0-1/* /usr/autodesk/maya2022/lib/
-    cp -r $1/lib/libjbig/2.1-23/* /usr/autodesk/maya2022/lib/
-    cp -r $1/lib/openssl/10-1.0.2o-3/* /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/libtiff/4.4.0-1/* /usr/autodesk/maya2020/lib/
+    cp -r $1/lib/libjbig/2.1-23/* /usr/autodesk/maya2020/lib/
+    cp -r $1/lib/openssl/10-1.0.2o-3/* /usr/autodesk/maya2020/lib/
 
     # Link libraries to Maya's lib folder
     #ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2020/lib/libGL.so

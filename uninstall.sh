@@ -30,7 +30,7 @@ esac
 uninstallMaya $VERSION
 rmMayaDirs $VERSION $NONROOT
 
-if [[ $ADSK == y ]] || [[ $ADSK == Y ]]; then
+if [[ $ADSK == y || $ADSK == Y ]]; then
     systemctl stop adsklicensing
     systemctl disable adsklicensing
     uninstallAdsk

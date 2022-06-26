@@ -37,25 +37,25 @@ VERSION2=$VERSION
 installDep $VERSION $NONROOT
 sudo -u $NONROOT mkdir $PKG
 
-if [[ $ADSK == y ]] || [[ $ADSK == Y ]]; then
+if [[ $ADSK == y || $ADSK == Y ]]; then
     # Extract Adsk files
-    sudo -u $NONROOT mkdir Adsk
-    tar zxvf $(ls | grep Adsk | grep .gz) -C Adsk
+    sudo -u $NONROOT tar zxvf $(ls | grep Adsk | grep .gz) -C .
 
     # Install Adsk
     convertAdsk $PKG
     installAdsk $PKG
-    cleanAdsk $PKG
+    cleanAdsk $PKG $ROOT_DIR
 fi
 
 # Extract Maya files
+cd $ROOT_DIR
 sudo -u $NONROOT mkdir Maya
-tar zxvf $(ls | grep Maya | grep .tgz) -C Maya
+sudo -u $NONROOT tar zxvf $(ls | grep Maya | grep .tgz) -C Maya
 
 # Install Maya
 convertMaya $VERSION $PKG
 installMaya $VERSION $NONROOT $PKG $ROOT_DIR
-cleanMaya $VERSION2 $PKG
+cleanMaya $VERSION2 $PKG $ROOT_DIR
 
 rmPkg $ROOT_DIR
 

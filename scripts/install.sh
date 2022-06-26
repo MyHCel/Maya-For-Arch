@@ -27,7 +27,7 @@ function installMaya()
 
     cd $4
     installMtoA $1 $4
-    registerMaya
+    registerMaya $1
     setEnv $1 $2
 }
 
