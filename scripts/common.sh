@@ -16,11 +16,14 @@ function registerMaya()
         ;;
     esac
 
-    /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
+    # Check if Maya has been registered already
+    REG=$(/opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list | grep $NUMBER)
 
-    /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper \
-    register -pk $NUMBER -pv $1.0.0.F -el EN_US -cf \
-    /var/opt/Autodesk/Adlm/Maya$1/MayaConfig.pit
+    if [[ $REG == "" ]]; then
+        /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper \
+        register -pk $NUMBER -pv $1.0.0.F -el EN_US -cf \
+        /var/opt/Autodesk/Adlm/Maya$1/MayaConfig.pit
+    fi
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
 }
