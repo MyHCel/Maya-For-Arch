@@ -43,8 +43,13 @@ function setEnv()
 {
     sudo -u $2 mkdir -p /home/$2/maya/$1
 
-    sudo -u $2 echo -e "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1\nMAYA_COLOR_MGT_NO_LOGGING=1\nTMPDIR=/tmp" \
-    > /home/$2/maya/$1/Maya.env
+    echo "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1" > /home/$2/maya/$1/Maya.env
+    echo "MAYA_COLOR_MGT_NO_LOGGING=1" >> /home/$2/maya/$1/Maya.env
+    echo "TMPDIR=/tmp" >> /home/$2/maya/$1/Maya.env
+
+    if [ $1 >= 2022 ]; then
+        echo "MAYA_NO_HOME=1" >> /home/$2/maya/$1/Maya.env
+    fi
 
     chown $2:$2 /home/$2/maya/$1/Maya.env
 }

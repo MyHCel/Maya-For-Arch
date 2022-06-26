@@ -94,13 +94,15 @@ function installLib2022()
     mkdir -p /usr/autodesk/maya2022/lib
 
     # Copy libraries to Maya's lib folder
-    cp -r $1/lib/2022/* /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/libtiff/4.4.0-1/* /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/libjbig/2.1-23/* /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/libpng12/1.2.57-15/* /usr/autodesk/maya2022/lib/
 
     # Link libraries to Maya's lib folder
     ln -s /usr/lib/libcrypto.so.1.1 /usr/autodesk/maya2022/lib/libcrypto.so.10
     ln -s /usr/lib/libssl.so.1.1 /usr/autodesk/maya2022/lib/libssl.so.10
     ln -s /usr/lib/libcrypt.so.2.0.0 /usr/autodesk/maya2022/lib/libcrypt.so.1
-    ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2022/lib/libGL.so
+    #ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2022/lib/libGL.so
 
     # Create libmd.so into lib folder
     touch /usr/autodesk/maya2022/lib/libmd.so
