@@ -16,6 +16,9 @@ echo "[2] Maya 2022"
 echo -n "version: "
 read VERSION
 
+echo -n "Install Autodesk Licensing Service? [Y/N]: "
+read ADSK
+
 echo -n "Enter your username: "
 read NONROOT
 
@@ -30,15 +33,30 @@ case $VERSION in
 esac
 
 VERSION2=$VERSION
-installDep $VERSION $NONROOT
 
-# extract the compressed file
+installDep $VERSION $NONROOT
+sudo -u $NONROOT mkdir $PKG
+
+if [[ $ADSK == y ]] || [[ $ADSK == Y ]]; then
+    # Extract Adsk files
+    sudo -u $NONROOT mkdir Adsk
+    tar zxvf $(ls | grep Adsk | grep .gz) -C Adsk
+
+    # Install Adsk
+    convertAdsk $PKG
+    installAdsk $PKG
+    cleanAdsk $PKG
+fi
+
+# Extract Maya files
 sudo -u $NONROOT mkdir Maya
 tar zxvf $(ls | grep Maya | grep .tgz) -C Maya
 
-sudo -u $NONROOT mkdir $PKG
-convertPkg $VERSION $PKG
+# Install Maya
+convertMaya $VERSION $PKG
 installMaya $VERSION $NONROOT $PKG $ROOT_DIR
-clean $VERSION2 $PKG $ROOT_DIR
+cleanMaya $VERSION2 $PKG
+
+rmPkg $ROOT_DIR
 
 echo "Done C:"

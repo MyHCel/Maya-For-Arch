@@ -16,8 +16,5 @@ function installDep()
         2022)
             installDep2022 $2
             ;;
-        *)
-            echo "bruh"
-            ;;
     esac
 }

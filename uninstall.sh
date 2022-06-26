@@ -9,6 +9,9 @@ echo "[2] Maya 2022"
 echo -n "version: "
 read VERSION
 
+echo -n "Uninstall Autodesk Licensing Service? [Y/N]: "
+read ADSK
+
 echo -n "Enter your username: "
 read NONROOT
 
@@ -24,7 +27,15 @@ case $VERSION in
         ;;
 esac
 
-systemctl stop adsklicensing
-systemctl disable adsklicensing
-uninstall $VERSION
-rmLeftDirs $VERSION $NONROOT
+uninstallMaya $VERSION
+rmMayaDirs $VERSION $NONROOT
+
+if [[ $ADSK == y ]] || [[ $ADSK == Y ]]; then
+    systemctl stop adsklicensing
+    systemctl disable adsklicensing
+    uninstallAdsk
+    rmAdskDirs $NONROOT
+fi
+
+rmAutodeskDirs $NONROOT
+

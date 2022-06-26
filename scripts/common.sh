@@ -1,16 +1,20 @@
 #!/usr/bin/bash
 
-# Enable adks licensing
-function adskLic()
+# Register Maya
+function registerMaya()
 {
-    getent group adsklic &>/dev/null || sudo groupadd adsklic
-    id -u adsklic &>/dev/null || sudo useradd -M -r -g adsklic adsklic -d / -s /usr/bin/nologin
-    systemctl enable adsklicensing --quiet
-    systemctl start adsklicensing
+    VERSION=$(ls /opt/Autodesk/AdskLicensing)
+
+    /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
+
+    /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper \
+    register -pk 657L1 -pv 2020.0.0.F -el EN_US -cf \
+    /var/opt/Autodesk/Adlm/<mayaversion>/MayaConfig.pit
+
+    /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
 }
 
 # Install Arnold for Maya
-# from the current directory
 # Argument 1: version
 # Argument 2: Installer root dir
 function installMtoA()
@@ -20,20 +24,18 @@ function installMtoA()
 }
 
 # Remove the pkg directory
-# Argument 1: Installer root dir
+# Argument 1: pkg dir
+# Argument 2: Installer root dir
 function rmPkg()
 {
     echo -n "Remove converted packages? [Y/N]: "
     read INPUT
 
-    cd $1
+    cd $2
 
-    case $INPUT in
-
-    y | Y)
-        rm -r pkg
-        ;;
-    esac
+    if [[ $INPUT == y ]] || [[ $INPUT == Y ]]; then
+        rm -r $1
+    fi
 }
 
 # Set the env file
@@ -45,6 +47,7 @@ function setEnv()
 
     echo "MAYA_OPENCL_IGNORE_DRIVER_VERSION=1" > /home/$2/maya/$1/Maya.env
     echo "MAYA_COLOR_MGT_NO_LOGGING=1" >> /home/$2/maya/$1/Maya.env
+    echo "MAYA_DISABLE_CIP=1" >> /home/$2/maya/$1/Maya.env
     echo "TMPDIR=/tmp" >> /home/$2/maya/$1/Maya.env
 
     if [ $1 >= 2022 ]; then
@@ -54,10 +57,33 @@ function setEnv()
     chown $2:$2 /home/$2/maya/$1/Maya.env
 }
 
-# Remove Autodesk directories
+# Remove Maya directories
 # Argument 1: version
 # Argument 2: user name
-function rmLeftDirs()
+function rmMayaDirs()
+{
+    HOME_DIR=/home/$2
+
+    rm -r /usr/autodesk/maya$1
+    rm -r /usr/autodesk/modules/maya
+    rm -r $HOME_DIR/maya
+    rm -r $HOME_DIR/xgen
+}
+
+# Remove Adsk directories
+# Argument 1: user name
+function rmAdskDirs()
+{
+    HOME_DIR=/home/$1
+
+    rm -r /var/opt/Autodesk/Adlm
+    rm -r /var/opt/Autodesk/AdskLicensingService
+    rm -r $HOME_DIR/Adlm
+}
+
+# Remove Autodesk directories
+# Argument 1: user name
+function rmAutodeskDirs()
 {
     echo -e "\nRemove Autodesk directories?"
     echo "(if you have more Autodesk software"
@@ -65,28 +91,14 @@ function rmLeftDirs()
     echo -n "[Y/N]: "
     read INPUT
 
-    HOME_DIR=/home/$2
+    HOME_DIR=/home/$1
 
-    case $INPUT in
-
-    y | Y)
-        if [ $1 == 2022 ]; then
-            rm -r /opt/Autodesk
-        fi
-
+    if [[ $INPUT == y ]] || [[ $INPUT == Y ]]; then
         rm -r /usr/autodesk
+        rm -r /opt/Autodesk
+        rm -r /var/opt/Autodesk
         rm -r $HOME_DIR/.local/share/Autodesk
         rm -r $HOME_DIR/.autodesk
         rm -r $HOME_DIR/.config/Autodesk
-        ;;
-
-    n | N)
-        rm -r /usr/autodesk/maya$1
-        rm -r /usr/autodesk/modules/maya
-        ;;
-    esac
-
-    rm -r $HOME_DIR/maya
-    rm -r $HOME_DIR/xgen
-    rm -r $HOME_DIR/Adlm
+    fi
 }

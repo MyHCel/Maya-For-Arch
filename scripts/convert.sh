@@ -2,11 +2,12 @@
 
 source $PWD/scripts/2020.sh
 source $PWD/scripts/2022.sh
+source $PWD/scripts/adsk.sh
 
-# Convert packages
+# Convert Maya packages
 # Argument 1: version
 # Argument 2: dest dir
-function convertPkg()
+function convertMaya()
 {
     case $1 in
         2020)
@@ -23,4 +24,14 @@ function convertPkg()
             debToZst2022
             ;;
     esac
+}
+
+# Convert Adsk packages
+# Argument 1: dest dir
+function convertAdsk()
+{
+    rpmToDebAdsk
+    mvDebPkgAdsk $1
+    cd $1
+    debToZstAdsk
 }
