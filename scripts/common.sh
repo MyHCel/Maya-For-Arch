@@ -5,11 +5,21 @@
 function registerMaya()
 {
     VERSION=Current
+    
+    case $1 in
+        2020)
+            NUMBER=657L1
+        ;;
+
+        2022)
+            NUMBER=657N1
+        ;;
+    esac
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper \
-    register -pk 657L1 -pv 2020.0.0.F -el EN_US -cf \
+    register -pk $NUMBER -pv $1.0.0.F -el EN_US -cf \
     /var/opt/Autodesk/Adlm/Maya$1/MayaConfig.pit
 
     /opt/Autodesk/AdskLicensing/$VERSION/helper/AdskLicensingInstHelper list
@@ -67,8 +77,13 @@ function rmMayaDirs()
 
     rm -r /usr/autodesk/maya$1
     rm -r /usr/autodesk/modules/maya
+    rm -r /opt/Autodesk/Synergy
+    rm -r /opt/Allegorithmic/Substance_in_Maya
+    rm -r /opt/rokoko_motion_library/maya
     rm -r $HOME_DIR/maya
     rm -r $HOME_DIR/xgen
+    rm -r $HOME_DIR/.cache/Autodesk/Maya-$1
+    rm -r $HOME_DIR/.config/Autodesk/Maya-2022.conf
 }
 
 # Remove Adsk directories
@@ -80,6 +95,8 @@ function rmAdskDirs()
     rm -r /var/opt/Autodesk/Adlm
     rm -r /var/opt/Autodesk/AdskLicensingService
     rm -r $HOME_DIR/Adlm
+    rm -r $HOME_DIR/.config/Autodesk/'Autodesk Licensing Manager.conf'
+    rm -r $HOME_DIR/.local/share/Autodesk/'Web Services'/*
 }
 
 # Remove Autodesk directories
@@ -98,8 +115,9 @@ function rmAutodeskDirs()
         rm -r /usr/autodesk
         rm -r /opt/Autodesk
         rm -r /var/opt/Autodesk
-        rm -r $HOME_DIR/.local/share/Autodesk
         rm -r $HOME_DIR/.autodesk
+        rm -r $HOME_DIR/.cache/Autodesk
         rm -r $HOME_DIR/.config/Autodesk
+        rm -r $HOME_DIR/.local/share/Autodesk
     fi
 }
