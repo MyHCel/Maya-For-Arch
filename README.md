@@ -18,7 +18,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 
 1. Download Maya for Linux from https://www.autodesk.com/
 
-2. Download Autodesk Licensing Service [here] (https://knowledge.autodesk.com/search-result/caas/downloads/content/autodesk-licensing-service-download.html) (only if you don't have it installed or want to update it).
+2. Download Autodesk Licensing Service [here](https://knowledge.autodesk.com/search-result/caas/downloads/content/autodesk-licensing-service-download.html) (only if you don't have it installed or want to update it).
 
 3. Clone this project wherever you like on your PC.
 
