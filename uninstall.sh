@@ -20,11 +20,11 @@ HOME_DIR=/home/$NONROOT
 case $VERSION in
     1 | 2020)
         VERSION=2020
-        ;;
+    ;;
 
     2 | 2022)
         VERSION=2022
-        ;;
+    ;;
 esac
 
 uninstallMaya $VERSION

@@ -15,11 +15,11 @@ function cleanMaya()
     case $1 in
         2020)
             rmDebPkg2020
-            ;;
+        ;;
 
         2022)
             rmDebPkg2022
-            ;;
+        ;;
     esac
 
     cd $3

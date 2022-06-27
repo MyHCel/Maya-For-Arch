@@ -4,7 +4,8 @@
 # Argument 1: username
 function installDep2020()
 {
-    sudo -u $1 yay -Syu --noconfirm --needed libjpeg lib32-libjpeg \
+    sudo -u $1 yay -Syu --noconfirm --needed \
+    libjpeg lib32-libjpeg \
     libjpeg6 audiofile xorg-fonts-misc \
     libxp python2 python2-backports \
     ld-lsb lsb-release cpio \
@@ -13,11 +14,7 @@ function installDep2020()
     adobe-source-code-pro-fonts \
     xorg-xlsfonts xorg-fonts-type1 \
     libpng15 ncurses5-compat-libs \
-    lib32-ncurses5-compat-libs libffi6 \
-    alien_package_converter debtap
-
-    # Update debtap
-    debtap -u
+    lib32-ncurses5-compat-libs libffi6
 }
 
 # Convert all rpm packages
@@ -52,8 +49,8 @@ function debToZst2020()
 # the current directory
 function installPkg2020()
 {
-    pacman -U --noconfirm $(ls | grep bifrost | grep .zst)
     pacman -U --noconfirm $(ls | grep maya2020 | grep .zst)
+    pacman -U --noconfirm $(ls | grep bifrost | grep .zst)
     pacman -U --noconfirm $(ls | grep substance | grep .zst)
 }
 
@@ -90,6 +87,6 @@ function rmDebPkg2020()
 function uninstallPkg2020()
 {
     pacman -Rns --noconfirm $(pacman -Qm | grep bifrost | awk '{print $1}')
-    pacman -Rns --noconfirm $(pacman -Qm | grep maya2020 | awk '{print $1}')
     pacman -Rns --noconfirm $(pacman -Qm | grep substance | awk '{print $1}')
+    pacman -Rns --noconfirm $(pacman -Qm | grep maya2020 | awk '{print $1}')
 }

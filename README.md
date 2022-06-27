@@ -18,21 +18,24 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 
 1. Download Maya for Linux from https://www.autodesk.com/
 
-2. Clone this project wherever you like on your PC.
+2. Download Autodesk Licensing Service [here] (https://knowledge.autodesk.com/search-result/caas/downloads/content/autodesk-licensing-service-download.html) (only if you don't have it installed or want to update it).
+
+3. Clone this project wherever you like on your PC.
 
    ```bash
    git clone https://github.com/MyHCel/Maya-For-Arch.git
    ```
 
-3. Cd into Maya-For-Arch
+4. Cd into Maya-For-Arch
 
    ```bash
    cd Maya-For-Arch
    ```
 
-4. Put the "Autodesk_Maya.tgz" file in the "Maya-For-Arch" folder
+5. Put the "Autodesk_Maya.tgz" and the "AdskLicensingInstaller.tar.gz" (optional based on step 2) 
+   files in the "Maya-For-Arch" folder.
 
-5. Execute the installer script.
+6. Execute the installer script.
 
    Note: This will update your system and install all required dependecies. If you don't want
    to update your system, modify the "installDep 'version' () function" in "scripts/'version'.sh"
@@ -41,7 +44,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
    sudo ./install.sh
    ```
 
-6. Select the Maya version you want to install.
+7. Select the Maya version you want to install.
 
    ```bash
    Select the version you want to install
@@ -50,13 +53,19 @@ Note: Depending on your processor, converting the rpm packages may take quite so
    version:
    ```
 
-7. Enter you user name (same as your home folder)
+8. Choose based in your decision in step 2.
+
+   ```bash
+   Install Autodesk Licensing Service? [Y/N]:
+   ```
+
+9. Enter you user name (same as your home folder)
 
    ```bash
    Enter your username:
    ```
 
-   7.1. If the script does not execute, chmod all ".sh" files
+   9.1. If the script does not execute, chmod all ".sh" files
 
    ```bash
    chmod +x install.sh
@@ -68,9 +77,20 @@ Note: Depending on your processor, converting the rpm packages may take quite so
    chmod +x -R scripts
    ```
 
-8. Maya should now be up and running!
+10. Maya should now be up and running!
 
-   Note: You can delete the "Maya-For-Arch" folder once the installation is done.
+11. Note: The converted packages are saved 
+    in case you need to reinstall the software.
+
+    If you want to install an update 
+    (eg. Maya 2022 is installed and you want to install 2022.3 
+    or you want to update Autodesk Licensing Service) first delete 
+    the corresponding cached files.
+
+    ```bash
+    Maya-For-Arch/cache/<Maya version> -> Delete this folder to update that version of Maya.
+    Maya-For-Arch/cache/adsk -> Delete this folder to update Autodesk Licensing Service.
+    ```
 
 ## Uninstalling Maya
 
@@ -89,7 +109,14 @@ Note: Depending on your processor, converting the rpm packages may take quite so
     version:
    ```
 
-2. Enter your username (same as your home folder)
+3. If you are going to install another version of Maya (or if other Autodesk software needs it), 
+   you should not uninstall Autodesk Licensing Service. Otherwise, you can uninstall it.
+
+   ```bash
+   Uninstall Autodesk Licensing Service? [Y/N]:
+   ```
+
+4. Enter your username (same as your home folder)
 
    ```bash
    Enter your username:
@@ -98,42 +125,23 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 ## Updates
 
 * Improved the script's structure.
-* Added option to keep or remove Autodesk folders when uninstalling.
-* Fixed libtiff error in 2022.
+* Improved installation of Autodesk Licensing Service.
+* Added package cache.
+* Fixed libtiff error.
 * Fixed libpng12 error in 2022 (only appears when crashing).
-
-* If you installed Maya 2022 with the old script, copy the
-  contents of Maya-For-Arch/lib/2022 to /usr/autodesk/maya2022/lib/
-
-  ```bash
-  sudo cp -r /path/to/Maya-For-Arch/lib/2022/* /usr/autodesk/maya2022/lib/
-  ```
+* Fixed home screen not working (not really, it just gets disabled :p).
+* Fixed crash when using Mesa drivers.
 
 ## Known issues
 
-* Some features such as colour managment and viewport 2.0 won't be available on
-  graphics cards that don't support OpenGL 4.
+* Maya will crash when trying to activate the software with a serial key.
 
-* Maya will crash when trying to activate the sowftare with a serial key.
+* Pymel for Maya 2022 throws warnings when executing a Python script when installing.
 
-* Pymel for Maya 2022 fails to execute a Python script when installing.
-
-* The home screen of Maya 2022 does not show up.
-  Workarround: restart Maya (only at first start), wait for it to load
-  and then press ESC.
-  Once in Maya, go to Preferences and uncheck "Show Home Screen on startup".
+* The home screen of Maya 2022 does not work.
 
 * The mtoh.so plug-in will give and error saying that "hdArnold.so" could not
   find "libai.so"
-
-* Maya 2022 crashes when running on Intel graphics.
-  To temporarily fix it run:
-
-  ```bash
-  maya -noAutoloadPlugins
-  ```
-
-  Then Activate the plug-ins you need except for mtoa.so and xgenToolkit.so
 
 ## I think that's all
 

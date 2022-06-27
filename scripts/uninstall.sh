@@ -11,11 +11,11 @@ function uninstallMaya()
     case $1 in
         2020)
             uninstallPkg2020
-            ;;
+        ;;
 
         2022)
             uninstallPkg2022
-            ;;
+        ;;
     esac
 }
 

@@ -1,11 +1,22 @@
 #!/usr/bin/bash
 
+# Install utilities
+# Argument 1: username
+function installUtil()
+{
+    sudo -u $1 yay -Syu --noconfirm --needed \
+    alien_package_converter debtap
+
+    # Update debtap
+    debtap -u
+}
+
 # Register Maya
 # Argument 1: version
 function registerMaya()
 {
     VERSION=Current
-    
+
     case $1 in
         2020)
             NUMBER=657L1
@@ -37,21 +48,6 @@ function installMtoA()
     python2 ./unix_installer.py $1 linux silent
 }
 
-# Remove the pkg directory
-# Argument 1: pkg dir
-# Argument 2: Installer root dir
-function rmPkg()
-{
-    echo -n "Remove converted packages? [Y/N]: "
-    read INPUT
-
-    cd $2
-
-    if [[ $INPUT == y || $INPUT == Y ]]; then
-        rm -r $1
-    fi
-}
-
 # Set the env file
 # Argument 1: version
 # Argument 2: user name
@@ -71,6 +67,33 @@ function setEnv()
     chown $2:$2 /home/$2/maya/$1/Maya.env
 }
 
+# Move converted packages to cache
+# Argument 1: user name
+# Argument 2: pkg dir
+# Argument 3: cache dir
+# Argument 4: Installer root dir
+function cachePkgMaya()
+{
+    cd $4
+    sudo -u $1 mv $2/* $3/
+    rm -r $2
+}
+
+# Move converted packages to cache
+# Argument 1: user name
+# Argument 2: pkg dir
+# Argument 3: cache dir
+# Argument 4: Installer root dir
+function cachePkgAdsk()
+{
+    cd $4
+
+    sudo -u $1 mv $(ls | grep adlmapps | grep .zst) $3/
+    sudo -u $1 mv $(ls | grep adskflexnetclient | grep .zst) $3/
+    sudo -u $1 mv $(ls | grep adskflexnetserver | grep .zst) $3/
+    sudo -u $1 mv $(ls | grep adsklicensing | grep .zst) $3/
+}
+
 # Remove Maya directories
 # Argument 1: version
 # Argument 2: user name
@@ -86,7 +109,7 @@ function rmMayaDirs()
     rm -r $HOME_DIR/maya
     rm -r $HOME_DIR/xgen
     rm -r $HOME_DIR/.cache/Autodesk/Maya-$1
-    rm -r $HOME_DIR/.config/Autodesk/Maya-2022.conf
+    rm -r $HOME_DIR/.config/Autodesk/Maya-$1.conf
 }
 
 # Remove Adsk directories

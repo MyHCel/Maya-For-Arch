@@ -11,10 +11,10 @@ function installDep()
     case $1 in
         2020)
             installDep2020 $2
-            ;;
+        ;;
 
         2022)
             installDep2022 $2
-            ;;
+        ;;
     esac
 }

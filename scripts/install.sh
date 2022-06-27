@@ -17,12 +17,12 @@ function installMaya()
         2020)
             installLib2020 $4
             installPkg2020
-            ;;
+        ;;
 
         2022)
             installLib2022 $4
             installPkg2022
-            ;;
+        ;;
     esac
 
     cd $4
@@ -36,13 +36,15 @@ function installMaya()
 function installAdsk()
 {
     cd $1
+    systemctl stop adsklicensing
+    systemctl disable adsklicensing
+
     installPkgAdsk
 
     getent group adsklic &>/dev/null || sudo groupadd adsklic
     id -u adsklic &>/dev/null || sudo useradd -M -r -g adsklic adsklic -d / -s /usr/bin/nologin 
+
     systemctl enable adsklicensing --quiet
     systemctl start adsklicensing
-
     systemctl status adsklicensing
 }
-

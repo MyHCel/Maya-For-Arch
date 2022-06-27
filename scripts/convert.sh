@@ -15,14 +15,14 @@ function convertMaya()
             mvDebPkg2020 $2
             cd $2
             debToZst2020
-            ;;
+        ;;
 
         2022)
             rpmToDeb2022
             mvDebPkg2022 $2
             cd $2
             debToZst2022
-            ;;
+        ;;
     esac
 }
 

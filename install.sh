@@ -5,9 +5,6 @@ source $PWD/scripts/convert.sh
 source $PWD/scripts/install.sh
 source $PWD/scripts/clean.sh
 
-ROOT_DIR=$PWD
-PKG=$ROOT_DIR/pkg
-
 echo -e "\n====== Maya For Arch by MyHCel ======\n"
 
 echo "Select the version you want to install"
@@ -25,26 +22,60 @@ read NONROOT
 case $VERSION in
     1 | 2020)
         VERSION=2020
-        ;;
+    ;;
 
     2 | 2022)
         VERSION=2022
-        ;;
+    ;;
 esac
 
+ROOT_DIR=$PWD
+PKG=$ROOT_DIR/pkg
 VERSION2=$VERSION
 
+CACHE=$ROOT_DIR/cache
+CACHE_MAYA=$CACHE/$VERSION
+CACHE_ADSK=$CACHE/adsk
+CACHE_MAYA_FLAG=0
+CACHE_ADSK_FLAG=0
+
 installDep $VERSION $NONROOT
-sudo -u $NONROOT mkdir $PKG
+sudo -u $NONROOT mkdir $CACHE
 
+# Check if Maya cache exists
+if [[ $(ls $CACHE | grep $VERSION) != "" ]]; then
+    CACHE_MAYA_FLAG=1
+fi
+
+# Check if Adsk cache exists
+if [[ $(ls $CACHE | grep adsk) != "" ]]; then
+    CACHE_ADSK_FLAG=1
+fi
+
+# Create pkg folder and install utilities
+if [[ $CACHE_MAYA_FLAG == 0 || $CACHE_ADSK_FLAG == 0 ]]; then
+    sudo -u $NONROOT mkdir $PKG
+    installUtil $NONROOT
+fi
+
+# Install adsk
 if [[ $ADSK == y || $ADSK == Y ]]; then
-    # Extract Adsk files
-    sudo -u $NONROOT tar zxvf $(ls | grep Adsk | grep .gz) -C .
+    # Install
+    if [[ $CACHE_ADSK_FLAG == 0 ]]; then
+        # Extract files
+        sudo -u $NONROOT tar zxvf $(ls | grep Adsk | grep .gz) -C .
+        convertAdsk $PKG
+    else
+        PKG=$CACHE_ADSK
+    fi
 
-    # Install Adsk
-    convertAdsk $PKG
     installAdsk $PKG
-    cleanAdsk $PKG $ROOT_DIR
+
+    if [[ $CACHE_ADSK_FLAG == 0 ]]; then
+        cleanAdsk $PKG $ROOT_DIR
+        sudo -u $NONROOT mkdir $CACHE_ADSK
+        cachePkgAdsk $NONROOT $PKG $CACHE_ADSK $ROOT_DIR
+    fi
 fi
 
 # Extract Maya files
@@ -53,10 +84,19 @@ sudo -u $NONROOT mkdir Maya
 sudo -u $NONROOT tar zxvf $(ls | grep Maya | grep .tgz) -C Maya
 
 # Install Maya
-convertMaya $VERSION $PKG
+
+if [[ $CACHE_MAYA_FLAG == 0 ]]; then
+    convertMaya $VERSION $PKG
+else
+    PKG=$CACHE_MAYA
+fi
+
 installMaya $VERSION $NONROOT $PKG $ROOT_DIR
 cleanMaya $VERSION2 $PKG $ROOT_DIR
 
-rmPkg $ROOT_DIR
+if [[ $CACHE_MAYA_FLAG == 0 ]]; then
+    sudo -u $NONROOT mkdir $CACHE_MAYA
+    cachePkgMaya $NONROOT $PKG $CACHE_MAYA $ROOT_DIR
+fi
 
 echo "Done C:"
