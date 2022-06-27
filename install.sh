@@ -74,7 +74,7 @@ if [[ $ADSK == y || $ADSK == Y ]]; then
     if [[ $CACHE_ADSK_FLAG == 0 ]]; then
         cleanAdsk $PKG $ROOT_DIR
         sudo -u $NONROOT mkdir $CACHE_ADSK
-        cachePkgAdsk $NONROOT $PKG $CACHE_ADSK $ROOT_DIR
+        cachePkg $NONROOT $PKG $CACHE_ADSK $ROOT_DIR
     fi
 fi
 
@@ -96,7 +96,9 @@ cleanMaya $VERSION2 $PKG $ROOT_DIR
 
 if [[ $CACHE_MAYA_FLAG == 0 ]]; then
     sudo -u $NONROOT mkdir $CACHE_MAYA
-    cachePkgMaya $NONROOT $PKG $CACHE_MAYA $ROOT_DIR
+    cachePkg $NONROOT $PKG $CACHE_MAYA $ROOT_DIR
 fi
+
+cd $ROOT_DIR && rm -r $PKG
 
 echo "Done C:"

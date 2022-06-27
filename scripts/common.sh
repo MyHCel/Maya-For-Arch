@@ -71,27 +71,9 @@ function setEnv()
 # Argument 1: user name
 # Argument 2: pkg dir
 # Argument 3: cache dir
-# Argument 4: Installer root dir
-function cachePkgMaya()
+function cachePkg()
 {
-    cd $4
     sudo -u $1 mv $2/* $3/
-    rm -r $2
-}
-
-# Move converted packages to cache
-# Argument 1: user name
-# Argument 2: pkg dir
-# Argument 3: cache dir
-# Argument 4: Installer root dir
-function cachePkgAdsk()
-{
-    cd $4
-
-    sudo -u $1 mv $(ls | grep adlmapps | grep .zst) $3/
-    sudo -u $1 mv $(ls | grep adskflexnetclient | grep .zst) $3/
-    sudo -u $1 mv $(ls | grep adskflexnetserver | grep .zst) $3/
-    sudo -u $1 mv $(ls | grep adsklicensing | grep .zst) $3/
 }
 
 # Remove Maya directories
