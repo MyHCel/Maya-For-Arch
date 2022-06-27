@@ -35,7 +35,5 @@ if [[ $ADSK == y || $ADSK == Y ]]; then
     systemctl disable adsklicensing
     uninstallAdsk
     rmAdskDirs $NONROOT
+    rmAutodeskDirs $NONROOT
 fi
-
-rmAutodeskDirs $NONROOT
-

@@ -78,6 +78,8 @@ function installLib2022()
     cp -r $1/lib/libtiff/4.4.0-1/* /usr/autodesk/maya2022/lib/
     cp -r $1/lib/libjbig/2.1-23/* /usr/autodesk/maya2022/lib/
     cp -r $1/lib/libpng12/1.2.57-15/* /usr/autodesk/maya2022/lib/
+    cp -r $1/lib/libffi/3.1-3.1-32/* /usr/autodesk/maya2022/lib/
+    mv /usr/autodesk/maya2022/lib/libffi.so.6 /usr/autodesk/maya2022/lib/libffi.so.8
 
     # Link libraries to Maya's lib folder
     ln -s /usr/lib/libcrypto.so.1.1 /usr/autodesk/maya2022/lib/libcrypto.so.10
