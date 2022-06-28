@@ -140,7 +140,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 
 * Pymel for Maya 2022 throws warnings when executing a Python script when installing.
 
-* The home screen of Maya 2022 does not work.
+* The home screen of Maya 2022 and 2023 does not work.
 
 * The mtoh.so plug-in will give and error saying that "hdArnold.so" could not
   find "libai.so"
