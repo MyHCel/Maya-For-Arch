@@ -111,6 +111,6 @@ if [[ $CACHE_MAYA_FLAG == 0 ]]; then
 fi
 
 PKG=$ROOT_DIR/pkg
-cd $ROOT_DIR && rm -r $PKG
+cd $ROOT_DIR && rm -rfv $PKG
 
 echo "Done C:"

@@ -87,15 +87,15 @@ function rmMayaDirs()
 {
     HOME_DIR=/home/$2
 
-    rm -r /usr/autodesk/maya$1
-    rm -r /usr/autodesk/modules/maya
-    rm -r /opt/Autodesk/Synergy
-    rm -r /opt/Allegorithmic/Substance_in_Maya
-    rm -r /opt/rokoko_motion_library/maya
-    rm -r $HOME_DIR/maya
-    rm -r $HOME_DIR/xgen
-    rm -r $HOME_DIR/.cache/Autodesk/Maya-$1
-    rm -r $HOME_DIR/.config/Autodesk/Maya-$1.conf
+    rm -rfv /usr/autodesk/maya$1
+    rm -rfv /usr/autodesk/modules/maya
+    rm -rfv /opt/Autodesk/Synergy
+    rm -rfv /opt/Allegorithmic/Substance_in_Maya
+    rm -rfv /opt/rokoko_motion_library/maya
+    rm -rfv $HOME_DIR/maya
+    rm -rfv $HOME_DIR/xgen
+    rm -rfv $HOME_DIR/.cache/Autodesk/Maya-$1
+    rm -rfv $HOME_DIR/.config/Autodesk/Maya-$1.conf
 }
 
 # Remove Adsk directories
@@ -104,11 +104,11 @@ function rmAdskDirs()
 {
     HOME_DIR=/home/$1
 
-    rm -r /var/opt/Autodesk/Adlm
-    rm -r /var/opt/Autodesk/AdskLicensingService
-    rm -r $HOME_DIR/Adlm
-    rm -r $HOME_DIR/.config/Autodesk/'Autodesk Licensing Manager.conf'
-    rm -r $HOME_DIR/.local/share/Autodesk/'Web Services'/*
+    rm -rfv /var/opt/Autodesk/Adlm
+    rm -rfv /var/opt/Autodesk/AdskLicensingService
+    rm -rfv $HOME_DIR/Adlm
+    rm -rfv $HOME_DIR/.config/Autodesk/'Autodesk Licensing Manager.conf'
+    rm -rfv $HOME_DIR/.local/share/Autodesk/'Web Services'/*
 }
 
 # Remove Autodesk directories
@@ -124,12 +124,12 @@ function rmAutodeskDirs()
     HOME_DIR=/home/$1
 
     if [[ $INPUT == y || $INPUT == Y ]]; then
-        rm -r /usr/autodesk
-        rm -r /opt/Autodesk
-        rm -r /var/opt/Autodesk
-        rm -r $HOME_DIR/.autodesk
-        rm -r $HOME_DIR/.cache/Autodesk
-        rm -r $HOME_DIR/.config/Autodesk
-        rm -r $HOME_DIR/.local/share/Autodesk
+        rm -rfv /usr/autodesk
+        rm -rfv /opt/Autodesk
+        rm -rfv /var/opt/Autodesk
+        rm -rfv $HOME_DIR/.autodesk
+        rm -rfv $HOME_DIR/.cache/Autodesk
+        rm -rfv $HOME_DIR/.config/Autodesk
+        rm -rfv $HOME_DIR/.local/share/Autodesk
     fi
 }

@@ -80,11 +80,11 @@ function installLib2023()
 # from the current directory
 function rmDebPkg2023()
 {
-    rm -r $(ls | grep substance | grep .deb)
-    rm -r $(ls | grep bifrost | grep .deb)
-    rm -r $(ls | grep maya2023 | grep .deb)
-    rm -r $(ls | grep mayausd | grep .deb)
-    rm -r $(ls | grep pymel | grep .deb)
+    rm -fv $(ls | grep substance | grep .deb)
+    rm -fv $(ls | grep bifrost | grep .deb)
+    rm -fv $(ls | grep maya2023 | grep .deb)
+    rm -fv $(ls | grep mayausd | grep .deb)
+    rm -fv $(ls | grep pymel | grep .deb)
 }
 
 # Uninstall packages
