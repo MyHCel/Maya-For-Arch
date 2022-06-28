@@ -5,16 +5,9 @@
 function installDep2020()
 {
     sudo -u $1 yay -Syu --noconfirm --needed \
-    libjpeg lib32-libjpeg \
-    libjpeg6 audiofile xorg-fonts-misc \
-    libxp python2 python2-backports \
-    ld-lsb lsb-release cpio \
-    xorg-fonts-100dpi xorg-fonts-75dpi \
-    xorg-fonts gsfonts \
-    adobe-source-code-pro-fonts \
-    xorg-xlsfonts xorg-fonts-type1 \
-    libpng15 ncurses5-compat-libs \
-    lib32-ncurses5-compat-libs libffi6
+    libxp gamin audiofile e2fsprogs \
+    xorg-fonts-75dpi xorg-fonts-100dpi ttf-liberation \
+    libjpeg6-turbo ncurses5-compat-libs
 }
 
 # Convert all rpm packages
@@ -68,9 +61,6 @@ function installLib2020()
     cp -r $1/lib/openssl/10-1.0.2o-3/* /usr/autodesk/maya2020/lib/
     cp -r $1/lib/libffi/3.1-3.1-32/* /usr/autodesk/maya2020/lib/
     mv /usr/autodesk/maya2020/lib/libffi.so.6 /usr/autodesk/maya2020/lib/libffi.so.8
-
-    # Link libraries to Maya's lib folder
-    #ln -s /usr/lib/libGL.so.1 /usr/autodesk/maya2020/lib/libGL.so
 
     # Create libmd.so into lib folder
     touch /usr/autodesk/maya2020/lib/libmd.so

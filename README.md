@@ -9,7 +9,6 @@ Maya For Arch is a simple script that helps you install Autodesk Maya on Arch Li
 These are the dependencies needed by the script.
 
 * yay
-* Multilib enabled
 * Lots of time
 
 ## How to use it
@@ -50,6 +49,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
    Select the version you want to install
    [1] Maya 2020
    [2] Maya 2022
+   [3] Maya 2023
    version:
    ```
 
@@ -106,6 +106,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
     Select the version you want to uninstall
     [1] Maya 2020
     [2] Maya 2022
+    [3] Maya 2023
     version:
    ```
 
@@ -131,6 +132,7 @@ Note: Depending on your processor, converting the rpm packages may take quite so
 * Fixed libpng12 error in 2022 (only appears when crashing).
 * Fixed home screen not working (not really, it just gets disabled :p).
 * Fixed crash when using Mesa drivers.
+* Added Maya 2023
 
 ## Known issues
 

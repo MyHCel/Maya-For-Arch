@@ -10,6 +10,7 @@ echo -e "\n====== Maya For Arch by MyHCel ======\n"
 echo "Select the version you want to install"
 echo "[1] Maya 2020"
 echo "[2] Maya 2022"
+echo "[3] Maya 2023"
 echo -n "version: "
 read VERSION
 
@@ -26,6 +27,10 @@ case $VERSION in
 
     2 | 2022)
         VERSION=2022
+    ;;
+
+    3 | 2023)
+        VERSION=2023
     ;;
 esac
 
@@ -49,6 +54,10 @@ fi
 
 # Check if Adsk cache exists
 if [[ $(ls $CACHE | grep adsk) != "" ]]; then
+    CACHE_ADSK_FLAG=1
+fi
+
+if [[ $ADSK == n || $ADSK == N ]]; then
     CACHE_ADSK_FLAG=1
 fi
 
@@ -76,6 +85,8 @@ if [[ $ADSK == y || $ADSK == Y ]]; then
         sudo -u $NONROOT mkdir $CACHE_ADSK
         cachePkg $NONROOT $PKG $CACHE_ADSK $ROOT_DIR
     fi
+
+    PKG=$ROOT_DIR/pkg
 fi
 
 # Extract Maya files
@@ -99,6 +110,7 @@ if [[ $CACHE_MAYA_FLAG == 0 ]]; then
     cachePkg $NONROOT $PKG $CACHE_MAYA $ROOT_DIR
 fi
 
+PKG=$ROOT_DIR/pkg
 cd $ROOT_DIR && rm -r $PKG
 
 echo "Done C:"

@@ -25,6 +25,10 @@ function registerMaya()
         2022)
             NUMBER=657N1
         ;;
+
+        2023)
+            NUMBER=657O1
+        ;;
     esac
 
     # Check if Maya has been registered already

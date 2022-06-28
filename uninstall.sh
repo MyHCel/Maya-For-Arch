@@ -6,6 +6,7 @@ source $PWD/scripts/common.sh
 echo -e "\nSelect the version you want to uninstall"
 echo "[1] Maya 2020"
 echo "[2] Maya 2022"
+echo "[3] Maya 2023"
 echo -n "version: "
 read VERSION
 
@@ -24,6 +25,10 @@ case $VERSION in
 
     2 | 2022)
         VERSION=2022
+    ;;
+
+    3 | 2023)
+        VERSION=2023
     ;;
 esac
 

@@ -2,6 +2,7 @@
 
 source $PWD/scripts/2020.sh
 source $PWD/scripts/2022.sh
+source $PWD/scripts/2023.sh
 
 # Install dependencies
 # Argument 1: version
@@ -15,6 +16,10 @@ function installDep()
 
         2022)
             installDep2022 $2
+        ;;
+
+        2023)
+            installDep2023 $2
         ;;
     esac
 }

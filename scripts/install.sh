@@ -2,6 +2,7 @@
 
 source $PWD/scripts/2020.sh
 source $PWD/scripts/2022.sh
+source $PWD/scripts/2023.sh
 source $PWD/scripts/adsk.sh
 source $PWD/scripts/common.sh
 
@@ -22,6 +23,11 @@ function installMaya()
         2022)
             installLib2022 $4
             installPkg2022
+        ;;
+
+        2023)
+            installLib2023 $4
+            installPkg2023
         ;;
     esac
 
