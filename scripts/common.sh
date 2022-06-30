@@ -87,15 +87,16 @@ function rmMayaDirs()
 {
     HOME_DIR=/home/$2
 
-    rm -rfv /usr/autodesk/maya$1
-    rm -rfv /usr/autodesk/modules/maya
-    rm -rfv /opt/Autodesk/Synergy
-    rm -rfv /opt/Allegorithmic/Substance_in_Maya
-    rm -rfv /opt/rokoko_motion_library/maya
-    rm -rfv $HOME_DIR/maya
-    rm -rfv $HOME_DIR/xgen
-    rm -rfv $HOME_DIR/.cache/Autodesk/Maya-$1
-    rm -rfv $HOME_DIR/.config/Autodesk/Maya-$1.conf
+    rm -rf /usr/autodesk/maya$1
+    rm -rf /usr/autodesk/modules/maya
+    rm -rf /usr/autodesk/arnold/maya$1
+    rm -rf /opt/Autodesk/Synergy
+    rm -rf /opt/Allegorithmic/Substance_in_Maya
+    rm -rf /opt/rokoko_motion_library/maya
+    rm -rf $HOME_DIR/maya
+    rm -rf $HOME_DIR/xgen
+    rm -rf $HOME_DIR/.cache/Autodesk/Maya-$1
+    rm -rf $HOME_DIR/.config/Autodesk/Maya-$1.conf
 }
 
 # Remove Adsk directories
@@ -104,11 +105,11 @@ function rmAdskDirs()
 {
     HOME_DIR=/home/$1
 
-    rm -rfv /var/opt/Autodesk/Adlm
-    rm -rfv /var/opt/Autodesk/AdskLicensingService
-    rm -rfv $HOME_DIR/Adlm
-    rm -rfv $HOME_DIR/.config/Autodesk/'Autodesk Licensing Manager.conf'
-    rm -rfv $HOME_DIR/.local/share/Autodesk/'Web Services'/*
+    rm -rf /var/opt/Autodesk/Adlm
+    rm -rf /var/opt/Autodesk/AdskLicensingService
+    rm -rf $HOME_DIR/Adlm
+    rm -rf $HOME_DIR/.config/Autodesk/'Autodesk Licensing Manager.conf'
+    rm -rf $HOME_DIR/.local/share/Autodesk/'Web Services'/*
 }
 
 # Remove Autodesk directories
@@ -124,12 +125,12 @@ function rmAutodeskDirs()
     HOME_DIR=/home/$1
 
     if [[ $INPUT == y || $INPUT == Y ]]; then
-        rm -rfv /usr/autodesk
-        rm -rfv /opt/Autodesk
-        rm -rfv /var/opt/Autodesk
-        rm -rfv $HOME_DIR/.autodesk
-        rm -rfv $HOME_DIR/.cache/Autodesk
-        rm -rfv $HOME_DIR/.config/Autodesk
-        rm -rfv $HOME_DIR/.local/share/Autodesk
+        rm -rf /usr/autodesk
+        rm -rf /opt/Autodesk
+        rm -rf /var/opt/Autodesk
+        rm -rf $HOME_DIR/.autodesk
+        rm -rf $HOME_DIR/.cache/Autodesk
+        rm -rf $HOME_DIR/.config/Autodesk
+        rm -rf $HOME_DIR/.local/share/Autodesk
     fi
 }

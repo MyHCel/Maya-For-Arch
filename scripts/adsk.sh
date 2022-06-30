@@ -46,10 +46,10 @@ function installPkgAdsk()
 # from the current directory
 function rmDebPkgAdsk()
 {
-    rm -fv $(ls | grep adlmapps | grep .deb)
-    rm -fv $(ls | grep adskflexnetclient | grep .deb)
-    rm -fv $(ls | grep adskflexnetserver | grep .deb)
-    rm -fv $(ls | grep adsklicensing | grep .deb)
+    rm -f $(ls | grep adlmapps | grep .deb)
+    rm -f $(ls | grep adskflexnetclient | grep .deb)
+    rm -f $(ls | grep adskflexnetserver | grep .deb)
+    rm -f $(ls | grep adsklicensing | grep .deb)
 }
 
 # Uninstall packages

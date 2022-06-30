@@ -88,12 +88,12 @@ function installLib2022()
 # from the current directory
 function rmDebPkg2022()
 {
-    rm -fv $(ls | grep bifrost | grep .deb)
-    rm -fv $(ls | grep maya2022 | grep .deb)
-    rm -fv $(ls | grep mayausd | grep .deb)
-    rm -fv $(ls | grep pymel | grep .deb)
-    rm -fv $(ls | grep rokoko | grep .deb)
-    rm -fv $(ls | grep substance | grep .deb)
+    rm -f $(ls | grep bifrost | grep .deb)
+    rm -f $(ls | grep maya2022 | grep .deb)
+    rm -f $(ls | grep mayausd | grep .deb)
+    rm -f $(ls | grep pymel | grep .deb)
+    rm -f $(ls | grep rokoko | grep .deb)
+    rm -f $(ls | grep substance | grep .deb)
 }
 
 # Uninstall packages

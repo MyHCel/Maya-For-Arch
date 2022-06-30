@@ -70,9 +70,9 @@ function installLib2020()
 # from the current directory
 function rmDebPkg2020()
 {
-    rm -fv $(ls | grep bifrost | grep .deb)
-    rm -fv $(ls | grep maya2020 | grep .deb)
-    rm -fv $(ls | grep substance | grep .deb)
+    rm -f $(ls | grep bifrost | grep .deb)
+    rm -f $(ls | grep maya2020 | grep .deb)
+    rm -f $(ls | grep substance | grep .deb)
 }
 
 # Uninstall packages

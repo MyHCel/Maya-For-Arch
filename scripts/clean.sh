@@ -39,5 +39,5 @@ function cleanAdsk()
     cd $1
     rmDebPkgAdsk
     cd $2
-    rm -rfv adsklicensinginstaller
+    rm -rf adsklicensinginstaller
 }
