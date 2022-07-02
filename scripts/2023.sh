@@ -15,9 +15,9 @@ function installDep2023()
 # from the current directory
 function rpmToDeb2023()
 {
-    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep AdobeSubstance | grep .rpm)
+    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Substance | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Bifrost | grep .rpm)
-    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Maya2023 | grep .rpm)
+    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Maya2023_64 | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep MayaUSD | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Pymel | grep .rpm)
 }

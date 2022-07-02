@@ -16,7 +16,7 @@ function installDep2022()
 function rpmToDeb2022()
 {
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Bifrost | grep .rpm)
-    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Maya2022 | grep .rpm)
+    alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Maya2022_64 | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep MayaUSD | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Pymel | grep .rpm)
     alien -d -c -v Maya/Packages/$(ls Maya/Packages/ | grep Rokoko | grep .rpm)
